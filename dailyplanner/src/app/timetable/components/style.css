@@ -1,0 +1,32 @@
+.table-body {
+     background-color: #3641392c; /* Replace with your desired color */
+     margin: 0; /* Remove default margin */
+     padding: 0; /* Remove default padding */
+     min-height: 100vh; /* Ensure it covers the full viewport height */
+}
+
+.custom-background {
+     background-color: #3641392c;
+     min-height: 100vh;
+}
+
+.custom-bg-color {
+     background-color: #ff5733;
+     color: white;
+}
+
+.custom-header-box {
+     display: flex;
+     justify-content: center;
+     background-color: #ec512ec3;
+     color: white;
+     padding: 10px;
+     border: 1px;
+     border-radius: 5px;
+}
+
+.fixed-header {
+     position: fixed;
+     top: 0;
+     width: 100%;
+}
