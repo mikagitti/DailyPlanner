@@ -1,0 +1,17 @@
+table {
+     width: 100%;
+}
+
+.table-header {
+     background-color: #417b81d0;
+     color: white;
+     font-size: 20px;
+}
+
+.table-row {
+     transition: background-color 0.1s ease;
+}
+
+.table-row:hover {
+     background-color: #959595; /* Change this to your desired highlight color */
+}
