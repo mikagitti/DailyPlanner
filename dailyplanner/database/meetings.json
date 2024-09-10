@@ -1,0 +1,19 @@
+{
+     "schedule": [
+          {
+               "date": "2024-09-20T13:00:00",
+               "event": "Meeting",
+               "location": "Room 4"
+          },
+          {
+               "date": "2024-09-23T14:30:00",
+               "event": "Workshop",
+               "location": "Room 2"
+          },
+          {
+               "date": "2024-09-27T15:30:00",
+               "event": "Presentation",
+               "location": "Room 3"
+          }
+     ]
+}

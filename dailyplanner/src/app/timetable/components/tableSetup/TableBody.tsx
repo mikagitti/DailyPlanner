@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { scheduleType, TableBuilderProps } from "../../misc/types";
-import { formatDate, getWeekday } from "../../misc/TimeHandle";
+import { formatDate, getDigitalTime, getWeekday } from "../../misc/TimeHandle";
 import TableModal from "../TableModal";
+import { Button } from "react-bootstrap";
 
 export default function TableRows({ scheduleData }: TableBuilderProps) {
     const [selectedItem, setSelectedItem] = useState<scheduleType | null>(null);
@@ -19,18 +20,14 @@ export default function TableRows({ scheduleData }: TableBuilderProps) {
     return (
         <>
             <tbody>
-                {scheduleData.map((item, index) => (
+                {scheduleData && scheduleData.map((item, index) => (
                     <tr className="table-row" key={index} onClick={() => handleRowClick(item)}>
-                        <td>{getWeekday(item.date)}</td>
-                        <td>{formatDate(item.date)}</td>
-                        <td>
-                            {item.date.toLocaleTimeString([], {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                            })}
-                        </td>
-                        <td>{item.event}</td>
-                        <td>{item.location}</td>
+                        <td> {getWeekday(item.date)} </td>
+                        <td> {formatDate(item.date)} </td>
+                        <td> {getDigitalTime(item.date)} </td>
+                        <td> {item.event} </td>
+                        <td> {item.location} </td>
+                        <td><Button style={{ fontSize: '10px', backgroundColor: "red", color: "white" }}>X</Button></td>
                     </tr>
                 ))}
             </tbody>

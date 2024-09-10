@@ -1,5 +1,5 @@
 import { Button, Modal } from "react-bootstrap";
-import { formatDate } from "../misc/TimeHandle";
+import { formatDate, getDigitalTime } from "../misc/TimeHandle";
 import { scheduleType } from "../misc/types";
 
 interface TableModalProps {
@@ -19,11 +19,7 @@ export default function TableModal({
                <Modal.Body>
                     <p>Date: {formatDate(selectedItem.date)}</p>
                     <p>
-                         Time:{" "}
-                         {selectedItem.date.toLocaleTimeString([], {
-                              hour: "2-digit",
-                              minute: "2-digit",
-                         })}
+                         Time: {getDigitalTime(selectedItem.date)}
                     </p>
                     <p>Event: {selectedItem.event}</p>
                     <p>Location: {selectedItem.location}</p>
