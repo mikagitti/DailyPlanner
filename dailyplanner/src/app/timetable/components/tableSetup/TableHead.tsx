@@ -7,6 +7,7 @@ export default function TableBuilder() {
                     <th>Time</th>
                     <th>What</th>
                     <th>Where</th>
+                    <th></th>
                </tr>
           </thead>
      );
