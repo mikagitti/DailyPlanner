@@ -5,13 +5,26 @@ table {
 .table-header {
      background-color: #417b81d0;
      color: white;
-     font-size: 20px;
+     font-size: 1.3rem;
 }
 
 .table-row {
-     transition: background-color 0.1s ease;
+     transition: background-color 0.1s ease, transform 0.1s ease,
+          box-shadow 0.1s ease;
+     font-size: 1rem;
 }
 
-.table-row:hover {
-     background-color: #959595; /* Change this to your desired highlight color */
+.table-rows tr:nth-child(even):hover,
+.table-rows tr:nth-child(odd):hover {
+     background-color: #d88484; /* Change this to your desired highlight color */
+     font-size: 1.15rem;
+     font-weight: bold;
+     color: black;
+     transform: translateY(-3px); /* Slightly lift the row */
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for 3D effect */
+}
+
+.table-rows tr:nth-child(even) {
+     background-color: #827e7e; /* Light grey background for even rows */
+     color: aliceblue;
 }

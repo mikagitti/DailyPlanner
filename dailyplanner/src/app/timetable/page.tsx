@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap";
 import Header from "./components/Header";
-import Table from "./components/Table";
+import MeetingTable from "./components/MeetingTable";
 import "./components/style.css";
 
 export default function Timetable() {
@@ -11,7 +11,7 @@ export default function Timetable() {
                </div>
 
                <div className="m-3 bg-light">
-                    <Table />
+                    <MeetingTable />
                </div>
           </div>
      );
