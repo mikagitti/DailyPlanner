@@ -1,19 +1,52 @@
 {
-     "schedule": [
-          {
-               "date": "2024-09-20T13:00:00",
-               "event": "Meeting",
-               "location": "Room 4"
-          },
-          {
-               "date": "2024-09-23T14:30:00",
-               "event": "Workshop",
-               "location": "Room 2"
-          },
-          {
-               "date": "2024-09-27T15:30:00",
-               "event": "Presentation",
-               "location": "Room 3"
-          }
-     ]
+  "schedule": [
+    {
+      "id": "tytytty",
+      "date": "2024-09-23T14:30:00",
+      "event": "Workshop",
+      "location": "Room 2"
+    },
+    {
+      "id": "3",
+      "date": "2024-09-25T10:00:00",
+      "event": "Conference",
+      "location": "Room 1"
+    },
+    {
+      "id": "53453",
+      "date": "2024-09-30T11:00:00",
+      "event": "Meeting uu the skyrooftop, left corner of the building. Don't forget to bring your own chair.",
+      "location": "Room 4"
+    },
+    {
+      "id": "6",
+      "date": "2024-10-02T09:00:00",
+      "event": "Seminar",
+      "location": "Room 3"
+    },
+    {
+      "id": "7",
+      "date": "2024-10-04T15:00:00",
+      "event": "Workshop",
+      "location": "Room 2"
+    },
+    {
+      "id": "10",
+      "date": "2024-10-11T14:00:00",
+      "event": "Seminar",
+      "location": "Room 3"
+    },
+    {
+      "id": "13",
+      "date": "2024-10-18T15:30:00",
+      "event": "Meeting",
+      "location": "Room 4"
+    },
+    {
+      "id": "91905350-5f9d-4756-b067-9da59f98cea1",
+      "event": "Lounas",
+      "location": "toimistolla",
+      "date": "2024-11-01T08:00:00.000Z"
+    }
+  ]
 }
