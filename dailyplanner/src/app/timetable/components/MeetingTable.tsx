@@ -1,6 +1,6 @@
 import TableBuilder from "./tableSetup/TableBuilder";
 
-export default function Table() {
+export default function MeetingTable() {
      return (
           <TableBuilder />
      );

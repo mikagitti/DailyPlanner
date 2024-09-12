@@ -1,13 +1,13 @@
-export default function TableBuilder() {
+
+export default function TableHead() {
      return (
           <thead>
                <tr className="table-header">
-                    <th>Day</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>What</th>
-                    <th>Where</th>
-                    <th></th>
+                    <th style={{ width: '100px' }}>Day</th>
+                    <th style={{ width: '100px' }}>Date</th>
+                    <th style={{ width: '70px' }}>Time</th>
+                    <th >What</th>
+                    <th style={{ width: '250px' }}>Where</th>
                </tr>
           </thead>
      );
