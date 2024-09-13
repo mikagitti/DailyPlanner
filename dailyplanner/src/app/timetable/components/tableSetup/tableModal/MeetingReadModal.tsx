@@ -25,7 +25,6 @@ export default function MeetingReadModal({
      }
 
      const handleEditMeeting = () => {
-          console.log('MeetingReadModal -> handleEditMeeting -> meeting:', meeting);
           closeModal();
           editMeeting(meeting);
      }

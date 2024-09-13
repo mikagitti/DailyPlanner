@@ -11,19 +11,14 @@ import { meetingType } from "../../misc/types";
 import MeetingFormModal from "./tableModal/MeetingFormModal";
 import MeetingReadModal from "./tableModal/MeetingReadModal";
 
-const emptyMeetingsMessage = <tbody><tr><td
-     colSpan={5}
-     style={{ textAlign: 'center', fontSize: '1.5rem', fontWeight: 'bold' }}>
-     No meetings scheduled
-</td></tr></tbody>;
-
 export default function TableBuilder() {
 
-     const [meetings, setMeetings] = useState([]);
+     const [meetings, setMeetings] = useState<meetingType[] | null>(null);
      const [selectedMeeting, setSelectedMeeting] = useState<meetingType | null>(null);
      const [openSelectedMeetingModal, setOpenSelectedMeetingModal] = useState<boolean>(false);
      const [openNewMeetingModal, setOpenNewMeetingModal] = useState(false);
      const [openEditMeetingModal, setOpenEditMeetingModal] = useState(false);
+     const [loading, setLoading] = useState(true);
 
      useEffect(() => {
           fetchMeetings();
@@ -35,15 +30,11 @@ export default function TableBuilder() {
           }
      }, [selectedMeeting]);
 
-
-
      const fetchMeetings = async () => {
-          try {
-               const response = await axios.get("http://localhost:5000/schedule");
-               setMeetings(response.data);
-          } catch (error) {
-               console.error("Error fetching meetings:", error);
-          }
+          getIncommingMeetings().then((meetings) => {
+               setMeetings(meetings);
+               setLoading(false);
+          });
      };
 
      const deleteMeeting = async (id: string) => {
@@ -72,12 +63,8 @@ export default function TableBuilder() {
      }
 
      const updateMeeting = async (meeting: meetingType) => {
-
-          console.log('updateMeeting:', meeting.id);
-
           try {
                const response = await axios.put(`http://localhost:5000/schedule/${meeting.id}`, meeting);
-               console.log('Meeting updated successfully:', response.data);
                fetchMeetings();
           } catch (error) {
                console.error("Error updating meeting:", error);
@@ -109,6 +96,8 @@ export default function TableBuilder() {
           setOpenEditMeetingModal(false);
           setSelectedMeeting(null);
      }
+
+     if (loading) return <h1>Loading...</h1>;
 
      return (
           <Container>
@@ -155,3 +144,39 @@ export default function TableBuilder() {
           </Container>
      );
 }
+
+
+const getMeetings = async () => {
+     try {
+          const response = await axios.get("http://localhost:5000/schedule");
+
+          const sortedMeetings = response.data.sort((a: meetingType, b: meetingType) => {
+               return new Date(a.date).getTime() - new Date(b.date).getTime();
+          });
+
+          return sortedMeetings;
+
+     } catch (error) {
+          console.error("Error fetching meetings:", error);
+     }
+};
+
+const removeOldMeetings = async (meetings: meetingType[]) => {
+     const currentDate = new Date();
+     const updatedMeetings = meetings.filter((meeting: meetingType) => {
+          return new Date(meeting.date) > currentDate;
+     });
+
+     return updatedMeetings;
+};
+
+const getIncommingMeetings = async () => {
+     const meetings = await getMeetings();
+     return removeOldMeetings(meetings);
+};
+
+const emptyMeetingsMessage = <tbody><tr><td
+     colSpan={5}
+     style={{ textAlign: 'center', fontSize: '1.5rem', fontWeight: 'bold' }}>
+     No meetings scheduled
+</td></tr></tbody>;
