@@ -17,9 +17,10 @@ const emptyMeetingsMessage = <tbody><tr><td
      No meetings scheduled
 </td></tr></tbody>;
 
+
 export default function TableBuilder() {
 
-     const [meetings, setMeetings] = useState([]);
+     const [meetings, setMeetings] = useState<meetingType[] | null>(null);
      const [selectedMeeting, setSelectedMeeting] = useState<meetingType | null>(null);
      const [openSelectedMeetingModal, setOpenSelectedMeetingModal] = useState<boolean>(false);
      const [openNewMeetingModal, setOpenNewMeetingModal] = useState(false);
@@ -35,12 +36,15 @@ export default function TableBuilder() {
           }
      }, [selectedMeeting]);
 
-
-
      const fetchMeetings = async () => {
           try {
                const response = await axios.get("http://localhost:5000/schedule");
-               setMeetings(response.data);
+
+               const sortedMeetings = response.data.sort((a: meetingType, b: meetingType) => {
+                    return new Date(a.date).getTime() - new Date(b.date).getTime();
+               });
+
+               setMeetings(sortedMeetings);
           } catch (error) {
                console.error("Error fetching meetings:", error);
           }
