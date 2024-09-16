@@ -19,6 +19,7 @@ export default function TableBuilder() {
      const [openNewMeetingModal, setOpenNewMeetingModal] = useState(false);
      const [openEditMeetingModal, setOpenEditMeetingModal] = useState(false);
      const [loading, setLoading] = useState(true);
+     const [oldMeetings, setOldMeetings] = useState(false);
 
      useEffect(() => {
           fetchMeetings();
@@ -31,7 +32,8 @@ export default function TableBuilder() {
      }, [selectedMeeting]);
 
      const fetchMeetings = async () => {
-          getIncommingMeetings().then((meetings) => {
+          setLoading(true);
+          getUpcommingMeetings().then((meetings) => {
                setMeetings(meetings);
                setLoading(false);
           });
@@ -52,7 +54,6 @@ export default function TableBuilder() {
      const addMeeting = async (meeting: meetingType) => {
           try {
                const response = await axios.post("http://localhost:5000/schedule", meeting);
-               console.log('Meeting added successfully:', response.data);
                fetchMeetings();
           } catch (error) {
                console.error("Error adding meeting:", error);
@@ -76,6 +77,21 @@ export default function TableBuilder() {
 
      const handleNewMeeting = () => {
           setOpenNewMeetingModal(true);
+     }
+
+     const showOldMeetings = async () => {
+
+          if (oldMeetings) {
+               await fetchMeetings();
+               setOldMeetings(!oldMeetings);
+               return;
+          }
+
+          await getOldMeetings().then((meetings) => {
+               setMeetings(meetings);
+          });
+
+          setOldMeetings(!oldMeetings);
      }
 
      const handleEditMeeting = (meeting: meetingType) => {
@@ -102,9 +118,14 @@ export default function TableBuilder() {
      return (
           <Container>
                <h1 className="text-center">Daily Planner</h1>
-               <div className="p-4">
-                    <button className="btn btn-primary" onClick={handleNewMeeting}>Add Meeting</button>
-               </div>
+               <Container style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+                    <div className="p-4">
+                         <button className="btn btn-primary" onClick={handleNewMeeting}>Add Meeting</button>
+                    </div>
+                    <div className="p-4">
+                         <button className="btn btn-primary" onClick={showOldMeetings}>{oldMeetings ? 'Coming Meetings' : 'Old Meetings'}</button>
+                    </div>
+               </Container>
                <div className="p-4">
                     <table style={{ width: "100%" }}>
                          <TableHead />
@@ -112,7 +133,7 @@ export default function TableBuilder() {
                               ? <TableRows
                                    meetings={meetings}
                                    setSelectedMeeting={setSelectedMeeting} />
-                              : emptyMeetingsMessage}
+                              : showInTableNoMessagesFound}
                     </table>
                </div>
 
@@ -150,11 +171,11 @@ const getMeetings = async () => {
      try {
           const response = await axios.get("http://localhost:5000/schedule");
 
-          const sortedMeetings = response.data.sort((a: meetingType, b: meetingType) => {
+          const sortedByDateMeetings = response.data.sort((a: meetingType, b: meetingType) => {
                return new Date(a.date).getTime() - new Date(b.date).getTime();
           });
 
-          return sortedMeetings;
+          return sortedByDateMeetings;
 
      } catch (error) {
           console.error("Error fetching meetings:", error);
@@ -170,12 +191,28 @@ const removeOldMeetings = async (meetings: meetingType[]) => {
      return updatedMeetings;
 };
 
-const getIncommingMeetings = async () => {
-     const meetings = await getMeetings();
-     return removeOldMeetings(meetings);
+const removeUpcomingMeetings = async (meetings: meetingType[]) => {
+     const currentDate = new Date();
+     const updatedMeetings = meetings.filter((meeting: meetingType) => {
+          return new Date(meeting.date) < currentDate;
+     });
+
+     return updatedMeetings;
 };
 
-const emptyMeetingsMessage = <tbody><tr><td
+const getUpcommingMeetings = async () => {
+     const meetings = await getMeetings();
+     const upcomingMeetings = removeOldMeetings(meetings);
+     return upcomingMeetings;
+};
+
+const getOldMeetings = async () => {
+     const meetings = await getMeetings();
+     const oldMeetings = removeUpcomingMeetings(meetings);
+     return oldMeetings;
+};
+
+const showInTableNoMessagesFound = <tbody><tr><td
      colSpan={5}
      style={{ textAlign: 'center', fontSize: '1.5rem', fontWeight: 'bold' }}>
      No meetings scheduled
