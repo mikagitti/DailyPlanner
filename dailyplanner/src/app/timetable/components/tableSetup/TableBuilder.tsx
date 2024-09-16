@@ -116,7 +116,7 @@ export default function TableBuilder() {
      if (loading) return <h1>Loading...</h1>;
 
      return (
-          <Container>
+          <Container fluid>
                <h1 className="text-center">Daily Planner</h1>
                <Container style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
                     <div className="p-4">
@@ -185,7 +185,11 @@ const getMeetings = async () => {
 const removeOldMeetings = async (meetings: meetingType[]) => {
      const currentDate = new Date();
      const updatedMeetings = meetings.filter((meeting: meetingType) => {
-          return new Date(meeting.date) > currentDate;
+          const meetingDate = new Date(meeting.date);
+          meetingDate.setHours(0, 0, 0, 0);
+          const currentDateWithoutTime = new Date(currentDate);
+          currentDateWithoutTime.setHours(0, 0, 0, 0);
+          return meetingDate >= currentDateWithoutTime;
      });
 
      return updatedMeetings;
@@ -194,7 +198,11 @@ const removeOldMeetings = async (meetings: meetingType[]) => {
 const removeUpcomingMeetings = async (meetings: meetingType[]) => {
      const currentDate = new Date();
      const updatedMeetings = meetings.filter((meeting: meetingType) => {
-          return new Date(meeting.date) < currentDate;
+          const meetingDate = new Date(meeting.date);
+          meetingDate.setHours(0, 0, 0, 0);
+          const currentDateWithoutTime = new Date(currentDate);
+          currentDateWithoutTime.setHours(0, 0, 0, 0);
+          return meetingDate < currentDateWithoutTime;
      });
 
      return updatedMeetings;
