@@ -1,5 +1,5 @@
 import { Button, Modal } from "react-bootstrap";
-import { formatDate, getDigitalTime } from "../../../misc/TimeHandle";
+import { formatDate, getLocalTimeFromUtc } from "../../../misc/TimeHandle";
 import { meetingType } from "../../../misc/types";
 
 interface TableModalProps {
@@ -37,7 +37,7 @@ export default function MeetingReadModal({
                <Modal.Body>
                     <p>Date: {formatDate(meeting.date)}</p>
                     <p>
-                         Time: {getDigitalTime(meeting.date)}
+                         Time: {getLocalTimeFromUtc(meeting.date)}
                     </p>
                     <p>Event: {meeting.event}</p>
                     <p>Location: {meeting.location}</p>

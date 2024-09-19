@@ -9,27 +9,20 @@ export function formatDate(date: Date): string {
 }
 
 /// Get the weekday from a given date
-export function getWeekday(date: Date): string {
-     const days = [
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-     ];
-
+export function getWeekdayInLanguage(
+     date: Date | number,
+     locale: string
+): string {
      const modifiedDate = new Date(date);
-     const dayIndex = modifiedDate.getDay();
-     const weekday = modifiedDate.toLocaleDateString("fi-FI", {
+     const weekday = modifiedDate.toLocaleDateString(locale, {
           weekday: "long",
      });
 
      return weekday;
 }
 
-export function getDigitalTime(date: Date): string {
+/// Get the time from a given date
+export function getLocalTimeFromUtc(date: Date): string {
      const modifiedDate = new Date(date);
 
      const localTime = modifiedDate.toLocaleTimeString([], {
@@ -37,5 +30,7 @@ export function getDigitalTime(date: Date): string {
           minute: "2-digit",
      });
 
-     return localTime;
+     const formattedTime = localTime.replace(".", ":");
+
+     return formattedTime;
 }

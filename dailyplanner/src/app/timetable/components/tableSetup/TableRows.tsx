@@ -1,8 +1,9 @@
 
-import { meetingType, TableBuilderProps } from "../../misc/types";
-import { formatDate, getDigitalTime, getWeekday } from "../../misc/TimeHandle";
+import { meetingType, TableRowsProps } from "../../misc/types";
+import { formatDate, getLocalTimeFromUtc, getWeekdayInLanguage } from "../../misc/TimeHandle";
+import './TableRows.css';
 
-export default function TableRows({ meetings, setSelectedMeeting }: TableBuilderProps) {
+export default function TableRows({ meetings, setSelectedMeeting }: TableRowsProps) {
 
     const handleRowClick = (item: meetingType) => {
         setSelectedMeeting(item);
@@ -22,12 +23,12 @@ export default function TableRows({ meetings, setSelectedMeeting }: TableBuilder
 
 const ShowTableRow = ({ item, handleRowClick }: { item: meetingType, handleRowClick: (item: meetingType) => void }) => {
     return (
-        <tr className={isTomorrow(item.date)} key={item.id} onClick={() => handleRowClick(item)}>
-            <td> {getWeekday(item.date)} </td>
-            <td> {formatDate(item.date)} </td>
-            <td> {getDigitalTime(item.date)} </td>
-            <td> {item.event} </td>
-            <td> {item.location} </td>
+        <tr className={`table-row ${isTomorrow(item.date) ? 'table-row-tomorrow' : ''}`} onClick={() => handleRowClick(item)}>
+            <td className="table-cell"> {getWeekdayInLanguage(item.date, 'en-EN')} </td>
+            <td className="table-cell"> {formatDate(item.date)} </td>
+            <td className="table-cell"> {getLocalTimeFromUtc(item.date)} </td>
+            <td className="table-cell"> {item.event} </td>
+            <td className="table-cell"> {item.location} </td>
         </tr>
     )
 }
@@ -40,20 +41,17 @@ const isTomorrow = (date: Date) => {
 
     const meetingDate = new Date(date);
 
-    if (
-        meetingDate.getDate() === today.getDate() &&
-        meetingDate.getMonth() === today.getMonth() &&
-        meetingDate.getFullYear() === today.getFullYear()
-    ) {
+    if (compareDates(meetingDate, today)) {
         return 'table-row today';
-    } else if (
-        meetingDate.getDate() === tomorrow.getDate() &&
-        meetingDate.getMonth() === tomorrow.getMonth() &&
-        meetingDate.getFullYear() === tomorrow.getFullYear()
-    ) {
+    } else if (compareDates(meetingDate, tomorrow)) {
         return 'table-row tomorrow';
-    }
-    else {
+    } else {
         return 'table-row';
     }
+};
+
+const compareDates = (date1: Date, date2: Date) => {
+    return (date1.getDate() === date2.getDate() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getFullYear() === date2.getFullYear())
 };

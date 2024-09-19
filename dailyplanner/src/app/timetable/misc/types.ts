@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type meetingType = {
      id: string;
      date: Date;
@@ -5,9 +7,9 @@ export type meetingType = {
      location: string;
 };
 
-export interface TableBuilderProps {
+export interface TableRowsProps {
      meetings: meetingType[];
-     setSelectedMeeting: (meeting: meetingType | null) => void;
+     setSelectedMeeting: (meeting: meetingType) => void;
 }
 
 export interface NewMeetingModalProps {
