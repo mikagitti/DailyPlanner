@@ -1,52 +1,28 @@
 {
   "schedule": [
     {
-      "id": "tytytty",
-      "date": "2024-09-23T14:30:00",
-      "event": "Workshop",
-      "location": "Room 2"
+      "id": "a14f8101-d976-42fe-9d5a-29efa8906372",
+      "event": "Helena is coming to visit!",
+      "location": "Helsinki-Vantaa Airport",
+      "date": "2024-11-22T12:25:00.000Z"
     },
     {
-      "id": "3",
-      "date": "2024-09-25T10:00:00",
-      "event": "Conference",
-      "location": "Room 1"
+      "id": "9da98f2a-814e-4a96-b57f-671809836fd7",
+      "event": "YOGA!",
+      "location": "In the big hall",
+      "date": "2024-09-03T16:30:00.000Z"
     },
     {
-      "id": "53453",
-      "date": "2024-09-30T11:00:00",
-      "event": "Meeting uu the skyrooftop, left corner of the building. Don't forget to bring your own chair.",
-      "location": "Room 4"
+      "id": "6d4774e2-788d-4107-bf2b-7659d89f09b1",
+      "event": "Mark today's meeting in the calendar",
+      "location": "Under the northern lights",
+      "date": "2024-09-19T15:45:00.000Z"
     },
     {
-      "id": "6",
-      "date": "2024-10-02T09:00:00",
-      "event": "Seminar",
-      "location": "Room 3"
-    },
-    {
-      "id": "7",
-      "date": "2024-10-04T15:00:00",
-      "event": "Workshop",
-      "location": "Room 2"
-    },
-    {
-      "id": "10",
-      "date": "2024-10-11T14:00:00",
-      "event": "Seminar",
-      "location": "Room 3"
-    },
-    {
-      "id": "13",
-      "date": "2024-10-18T15:30:00",
-      "event": "Meeting",
-      "location": "Room 4"
-    },
-    {
-      "id": "91905350-5f9d-4756-b067-9da59f98cea1",
-      "event": "Lounas",
-      "location": "toimistolla",
-      "date": "2024-11-01T08:00:00.000Z"
+      "id": "f9614986-7444-4828-a728-f385b83069ef",
+      "event": "Remember the Christmas preparations",
+      "location": "At grandma's house",
+      "date": "2024-12-21T10:00:00.000Z"
     }
   ]
 }

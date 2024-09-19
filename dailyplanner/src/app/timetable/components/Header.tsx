@@ -1,23 +1,15 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Link from "next/link";
+import { getWeekdayInLanguage } from "../misc/TimeHandle";
 
 export default function Header() {
      return (
           <>
                <Container>
                     <Row>
-                         {colToShow(
-                              new Date()
-                                   .toLocaleDateString("fi-FI", {
-                                        weekday: "long",
-                                   })
-                                   .toLocaleUpperCase()
-                         )}
-
-                         {colToShow(new Date().toLocaleDateString("fi-FI"))}
-
+                         {colToShow(getWeekdayInLanguage(new Date(), 'en-EN').toUpperCase())}
+                         {colToShow(new Date().toLocaleDateString("en-EN"))}
                          {colToShow("27°C")}
-
                          {colToShow(<Link href="/">Home</Link>)}
                     </Row>
                </Container>
