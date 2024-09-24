@@ -1,17 +1,16 @@
 'use client';
 
+import { styles } from "./style";
+
+import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
+
 import { formatUtcDateTime, splitDateTime } from "@/app/timetable/misc/TimeHandle";
 import { NewMeetingModalProps } from "@/app/timetable/misc/types";
 import { validateMeetingData } from "@/app/timetable/misc/Validation";
-import { useEffect, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
-import { v4 as uuidv4 } from 'uuid';
+import ErrorMessage from "./ErrorMessage";
 
-const styles = {
-    formGroup: {
-        margin: '10px 0',
-    },
-};
 
 
 export default function MeetingFormModal({ closeModal, saveMeeting, meeting, title, buttonText }: NewMeetingModalProps) {
@@ -62,7 +61,7 @@ export default function MeetingFormModal({ closeModal, saveMeeting, meeting, tit
             </Modal.Header>
             <Form onSubmit={handleSaveMeeting}>
                 <Modal.Body>
-                    <Form.Group className="{${errors.event ? 'has-error' : ''}}" controlId="event">
+                    <Form.Group controlId="event" style={styles.formGroup}>
                         <Form.Label>Event</Form.Label>
                         <Form.Control
                             type="text"
@@ -70,7 +69,7 @@ export default function MeetingFormModal({ closeModal, saveMeeting, meeting, tit
                             onChange={(e) => setFormData({ ...formData, event: e.target.value })}
                             placeholder="Enter event"
                         />
-                        {errors.event && <p style={{ color: 'red' }}>{errors.event}</p>}
+                        {errors.event && <ErrorMessage errorMessage={errors.event} />}
                     </Form.Group>
                     <Form.Group controlId="location" style={styles.formGroup}>
                         <Form.Label>Location</Form.Label>
@@ -80,7 +79,7 @@ export default function MeetingFormModal({ closeModal, saveMeeting, meeting, tit
                             onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                             placeholder="Enter location"
                         />
-                        {errors.location && <p style={{ color: 'red' }}>{errors.location}</p>}
+                        {errors.location && <ErrorMessage errorMessage={errors.location} />}
                     </Form.Group>
                     <Form.Group controlId="date" style={styles.formGroup}>
                         <Form.Label>Date</Form.Label>
@@ -89,7 +88,7 @@ export default function MeetingFormModal({ closeModal, saveMeeting, meeting, tit
                             value={formData.date}
                             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                         />
-                        {errors.date && <p style={{ color: 'red' }}>{errors.date}</p>}
+                        {errors.date && <ErrorMessage errorMessage={errors.date} />}
                     </Form.Group>
 
                     <Form.Group controlId="time" style={styles.formGroup}>
@@ -99,7 +98,7 @@ export default function MeetingFormModal({ closeModal, saveMeeting, meeting, tit
                             value={formData.time}
                             onChange={(e) => setFormData({ ...formData, time: e.target.value })}
                         />
-                        {errors.time && <p style={{ color: 'red' }}>{errors.time}</p>}
+                        {errors.time && <ErrorMessage errorMessage={errors.time} />}
                     </Form.Group>
                 </Modal.Body>
 
