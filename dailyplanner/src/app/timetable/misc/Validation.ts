@@ -1,4 +1,5 @@
 import { z } from "zod";
+import DOMPurify from "dompurify";
 
 const meetingSchema = z.object({
      id: z.string().uuid({ message: "Invalid meeting id" }),
@@ -33,31 +34,49 @@ export function validateMeetingData({
      formData,
      setErrors,
 }: validationType): boolean {
-     const result = meetingSchema.safeParse(formData);
+     const sanitizedData = sanitizeData(formData);
+     const validationResult = meetingSchema.safeParse(sanitizedData);
 
-     if (!result.success) {
-          const errorMessages = result.error.format();
+     if (!validationResult.success) {
+          const errorMessages = validationResult.error.format();
 
           setErrors({
-               event: result.error.errors.find((err) => err.path[0] === "event")
+               event: validationResult.error.errors.find(
+                    (err) => err.path[0] === "event"
+               )
                     ? errorMessages.event?._errors[0]
                     : undefined,
-               location: result.error.errors.find(
+               location: validationResult.error.errors.find(
                     (err) => err.path[0] === "location"
                )
                     ? errorMessages.location?._errors[0]
                     : undefined,
-               date: result.error.errors.find((err) => err.path[0] === "date")
+               date: validationResult.error.errors.find(
+                    (err) => err.path[0] === "date"
+               )
                     ? errorMessages.date?._errors[0]
                     : undefined,
-               time: result.error.errors.find((err) => err.path[0] === "time")
+               time: validationResult.error.errors.find(
+                    (err) => err.path[0] === "time"
+               )
                     ? errorMessages.time?._errors[0]
                     : undefined,
           });
           return false;
      } else {
           setErrors({});
-          console.log("Meeting data is valid", result.data);
           return true;
      }
 }
+
+const sanitizeData = (data: MeetingFormDataType): MeetingFormDataType => {
+     const sanitizedFormData = {
+          id: DOMPurify.sanitize(data.id),
+          event: DOMPurify.sanitize(data.event),
+          location: DOMPurify.sanitize(data.location),
+          date: DOMPurify.sanitize(data.date),
+          time: DOMPurify.sanitize(data.time),
+     };
+
+     return sanitizedFormData;
+};
