@@ -1,18 +1,21 @@
 .table-row {
+     font-size: 1rem;
      cursor: pointer;
-     transition: background-color 0.3s ease;
+     transition: background-color 0.3s ease, font-size 0.3s ease;
 }
-
 .table-row:hover {
+     font-size: 1.1rem;
      background-color: #f1f1f1;
 }
 
-.table-row-tomorrow {
-     background-color: #efd805;
+.tomorrow {
+     font-size: 1.4rem;
+     font-weight: bold;
+     transition: font-size 0.3s ease, color 0.3s ease;
 }
-
-.table-cell {
-     padding: 10px;
-     text-align: center;
-     vertical-align: middle;
+.table-row.tomorrow:hover {
+     font-size: 1.5rem;
+     color: rgb(236, 231, 231);
+     background-color: #7b3d3d;
+     transition: font-size 0.3s ease, color 0.3s ease;
 }

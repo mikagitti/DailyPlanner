@@ -10,25 +10,23 @@ export default function TableRows({ meetings, setSelectedMeeting }: TableRowsPro
     };
 
     return (
-        <>
-            <tbody className="table-rows">
-                {meetings && meetings.map((item) => (
-                    <ShowTableRow key={item.id} item={item} handleRowClick={handleRowClick} />
-                ))}
-            </tbody>
-        </>
+        <tbody>
+            {meetings && meetings.map((item) => (
+                <ShowTableRow key={item.id} item={item} handleRowClick={handleRowClick} />
+            ))}
+        </tbody>
     );
 }
 
 
 const ShowTableRow = ({ item, handleRowClick }: { item: meetingType, handleRowClick: (item: meetingType) => void }) => {
     return (
-        <tr className={`table-row ${isTomorrow(item.date) ? 'table-row-tomorrow' : ''}`} onClick={() => handleRowClick(item)}>
-            <td className="table-cell"> {getWeekdayInLanguage(item.date, 'en-EN')} </td>
-            <td className="table-cell"> {formatDate(item.date)} </td>
-            <td className="table-cell"> {getLocalTimeFromUtc(item.date)} </td>
-            <td className="table-cell"> {item.event} </td>
-            <td className="table-cell"> {item.location} </td>
+        <tr className={`table-row ${isTomorrow(item.date)}`} onClick={() => handleRowClick(item)}>
+            <td> {getWeekdayInLanguage(item.date, 'en-EN')} </td>
+            <td> {formatDate(item.date)} </td>
+            <td> {getLocalTimeFromUtc(item.date)} </td>
+            <td> {item.event} </td>
+            <td> {item.location} </td>
         </tr>
     )
 }
@@ -41,12 +39,10 @@ const isTomorrow = (date: Date) => {
 
     const meetingDate = new Date(date);
 
-    if (compareDates(meetingDate, today)) {
-        return 'table-row today';
-    } else if (compareDates(meetingDate, tomorrow)) {
-        return 'table-row tomorrow';
+    if (compareDates(meetingDate, tomorrow)) {
+        return 'tomorrow';
     } else {
-        return 'table-row';
+        return '';
     }
 };
 
