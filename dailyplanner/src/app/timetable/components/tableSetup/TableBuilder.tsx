@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 import './TableBuilder.css';
 import TableHead from "./TableHead";
@@ -134,14 +134,14 @@ export default function TableBuilder() {
 
                     {/* Show all meetings */}
                     <div className="p-4">
-                         <Table striped bordered hover className="table">
+                         <table>
                               <TableHead />
                               {meetingsToUI && meetingsToUI.length > 0
                                    ? <TableRows
                                         meetings={meetingsToUI}
                                         setSelectedMeeting={setSelectedMeeting} />
                                    : showInTableNoMessagesFound}
-                         </Table>
+                         </table>
                     </div>
 
                     {/* Show read modal for selected meeting. ReadModal. */}
