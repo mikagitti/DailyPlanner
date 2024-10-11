@@ -1,6 +1,7 @@
 import { Button, Modal } from "react-bootstrap";
 import { formatDate, getLocalTimeFromUtc } from "../../../misc/TimeHandle";
 import { meetingType } from "../../../misc/types";
+import './ModalStyles.css';
 
 interface TableModalProps {
      meeting: meetingType;
