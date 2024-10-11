@@ -3,7 +3,7 @@ const dayStyle = {
      width: '100px',
 };
 const dateStyle = {
-     width: '100px',
+     width: '110px',
 };
 const timeStyle = {
      width: '70px',

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./globals.css"; //Note! Using css files in this order. Globals.css overwrites bootstrap styles.
 
 
 export const metadata: Metadata = {

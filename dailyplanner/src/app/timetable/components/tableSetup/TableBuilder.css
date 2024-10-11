@@ -1,30 +1,33 @@
 table {
      width: 100%;
      margin-top: 20px;
+     color: white;
 }
 
 th {
      font-size: 1.2rem;
      padding: 10px;
      text-align: left;
-     background-color: #74a3dc;
      vertical-align: middle;
+     background-color: #add8e6;
+     color: black;
 }
 
 td {
      padding: 10px;
      text-align: left;
      vertical-align: middle;
+     color: white;
 }
 
 tr {
-     border: solid 1px gray;
+     border: solid 1px #444444;
 }
 
 tr:nth-child(even) {
-     background-color: #e0e2d6;
+     background-color: #555555;
 }
 
 tr:nth-child(odd) {
-     background-color: #f3ede1;
+     background-color: #666666;
 }

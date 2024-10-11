@@ -5,6 +5,7 @@
 }
 .table-row:hover {
      font-size: 1.1rem;
+     color: black;
      background-color: #f1f1f1;
 }
 
