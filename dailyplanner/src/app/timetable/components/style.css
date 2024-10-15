@@ -17,12 +17,19 @@
 
 .custom-header-box {
      display: flex;
+     align-items: center;
      justify-content: center;
      background-color: #ec512ec3;
      color: white;
-     padding: 10px;
+     height: 45px;
      border: 1px;
      border-radius: 5px;
+}
+
+.custom-header-box:has(Link) {
+     color: white;
+     background-color: #ff5733;
+     padding: 20px;
 }
 
 .fixed-header {

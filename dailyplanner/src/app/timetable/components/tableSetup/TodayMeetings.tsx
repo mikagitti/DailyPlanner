@@ -13,10 +13,10 @@ type todayMeetingsProps = {
 export default function TodayMeetings({ todayMeetings, handleRowClick }: todayMeetingsProps) {
     return (
         <Container>
-            <h1 className={styles.container}>
-                <Badge pill bg="danger" className={styles.badge}>🔥</Badge>
+            <h1 className={styles.todayMeetings}>
+                <Badge pill bg="none" className={styles.badge}>🔥</Badge>
                 Today's Meetings!
-                <Badge pill bg="danger" className={styles.badge}>🔥</Badge>
+                <Badge pill bg="none" className={styles.badge}>🔥</Badge>
             </h1>
             {todayMeetings.map((meeting, index) => (
                 <Card
@@ -26,10 +26,7 @@ export default function TodayMeetings({ todayMeetings, handleRowClick }: todayMe
                 >
                     <Card.Body>
                         <Row>
-                            <Col className={`${styles.col} ${styles.bold}`}>
-                                {formatDate(meeting.date)}
-                            </Col>
-                            <Col className={`${styles.col} ${styles.italic}`}>
+                            <Col className={`${styles.colTime}`}>
                                 {getLocalTimeFromUtc(meeting.date)}
                             </Col>
                             <Col className={styles.col}>

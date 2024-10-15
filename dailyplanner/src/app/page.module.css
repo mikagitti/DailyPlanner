@@ -2,6 +2,52 @@
      display: flex;
      flex-direction: column;
      align-items: center;
+     justify-content: center;
      padding: 6rem;
      min-height: 100vh;
+}
+
+.card {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 3rem;
+     margin: 1rem;
+     border-radius: 1rem;
+     background-color: black;
+}
+
+.welcome {
+     font-size: 3rem;
+     color: white;
+}
+
+.text {
+     margin-top: 20px;
+     font-size: 1.5rem;
+     color: white;
+}
+
+.button {
+     padding: 1rem;
+     margin: 1rem;
+     border-radius: 1rem;
+     background-color: black;
+     color: white;
+     font-size: 1.5rem;
+
+     text-decoration: none;
+}
+
+.button:hover {
+     transform: scale(1.5);
+     box-shadow: 12px 12px 12px black inset,
+          -10px -10px 10px rgba(110, 0, 0, 0.4) inset;
+     text-transform: uppercase;
+}
+
+.link {
+     text-decoration: none;
+     color: white;
 }

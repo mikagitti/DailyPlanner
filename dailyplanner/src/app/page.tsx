@@ -4,12 +4,16 @@ import styles from "./page.module.css";
 export default function Home() {
 
      return (
-          <main className={styles.main}>
 
-               <h1>welcome</h1>
-               <div>
-                    <Link href="/timetable">Start here: Timetable</Link>
+          <div className={styles.main}>
+               <div className={styles.card}>
+                    <div className={styles.welcome}>Welcome</div>
+                    <div className={styles.text}>Start planning your day</div>
                </div>
-          </main>
+               <button className={styles.button}>
+                    <Link className={styles.link} href="/timetable">Timetable</Link>
+               </button>
+          </div>
+
      );
 }

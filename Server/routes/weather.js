@@ -7,7 +7,8 @@ const city = "Oulu";
 const units = "metric"; // For Celsius
 const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`;
 let lastFetchTime = null;
-const fetchIntervalInMinutes = 1 * 60 * 1000; //Limit the fetch frequency : 1 fetch per minute.
+let previouslyFetchWeather = null;
+const fetchIntervalInMinutes = 2 * 60 * 1000; //Limit the fetch frequency : 1 fetch per 2 minutes.
 
 function isFetchIntervalPassed() {
      let isIntervalPassed = true;
